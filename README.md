@@ -40,6 +40,28 @@ Open the prototype locally:
 xdg-open web/index.html
 ```
 
+## Quality tooling and test harness
+
+Install dev tooling:
+
+```bash
+npm ci
+```
+
+Run quality checks:
+
+```bash
+npm run lint
+npm run test:unit
+npm run test:e2e:smoke
+```
+
+CI compatibility notes:
+
+- The scripts above are CI-safe and non-interactive.
+- The current Playwright smoke test is a minimal placeholder (`@smoke`) to validate the harness.
+- If browser-driven e2e coverage is added later, include `npx playwright install --with-deps` in CI before `npm run test:e2e:smoke`.
+
 ## Working model
 
 1. Capture architecture changes in `docs/` first.
