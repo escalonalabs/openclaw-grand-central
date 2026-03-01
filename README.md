@@ -22,9 +22,13 @@ OpenClaw Grand Central visualizes live OpenClaw activity using a train-station m
 
 ```text
 .
+├── bridge/
+│   └── middleware/
 ├── docs/
 │   ├── ARCHITECTURE_OPENCLAW_STATION.md
-│   └── adr/
+│   ├── adr/
+│   ├── observability/
+│   └── security/
 ├── web/
 │   └── index.html
 └── .github/
@@ -44,7 +48,8 @@ xdg-open web/index.html
 
 1. Capture architecture changes in `docs/` first.
 2. Record major decisions as ADRs in `docs/adr/`.
-3. Implement in small PRs with tests and update docs in the same PR.
+3. Capture security and observability contracts with each architecture update.
+4. Implement in small PRs with tests and update docs in the same PR.
 
 ## Update cadence
 
