@@ -1,0 +1,43 @@
+services:
+  bridge:
+    build:
+      context: ../..
+      dockerfile: infra/docker/Dockerfile.bridge
+    working_dir: /workspace
+    environment:
+      BRIDGE_PORT: ${BRIDGE_PORT:-3000}
+    command: >
+      sh -c "if [ -f bridge/package.json ]; then
+      cd bridge &&
+      npm ci &&
+      npm run dev -- --host 0.0.0.0 --port $$BRIDGE_PORT;
+      else
+      node -e \"require('http').createServer((_,res)=>res.end('bridge dev service')).listen(process.env.BRIDGE_PORT || 3000,'0.0.0.0')\";
+      fi"
+    ports:
+      - "${BRIDGE_PORT:-3000}:${BRIDGE_PORT:-3000}"
+    volumes:
+      - ../..:/workspace
+    init: true
+
+  web:
+    build:
+      context: ../..
+      dockerfile: infra/docker/Dockerfile.web
+    working_dir: /workspace/web
+    environment:
+      WEB_PORT: ${WEB_PORT:-5173}
+    command: >
+      sh -c "if [ -f package.json ]; then
+      npm ci &&
+      npm run dev -- --host 0.0.0.0 --port $$WEB_PORT;
+      else
+      vite --host 0.0.0.0 --port $$WEB_PORT;
+      fi"
+    ports:
+      - "${WEB_PORT:-5173}:${WEB_PORT:-5173}"
+    volumes:
+      - ../..:/workspace
+    depends_on:
+      - bridge
+    init: true
