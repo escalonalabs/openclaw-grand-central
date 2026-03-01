@@ -4,7 +4,8 @@ Real-time 3D command center for OpenClaw telemetry.
 
 ## What this project does
 
-OpenClaw Grand Central visualizes live OpenClaw activity using a train-station metaphor:
+OpenClaw Grand Central visualizes live OpenClaw activity using a
+train-station metaphor:
 
 - Agents as trains
 - Workspaces as stations
@@ -38,9 +39,15 @@ OpenClaw Grand Central visualizes live OpenClaw activity using a train-station m
 │   └── unit/
 ├── infra/
 │   └── docker/
+│       ├── docker-compose.dev.yml
+│       ├── Dockerfile.bridge
+│       └── Dockerfile.web
 ├── docs/
 │   ├── ARCHITECTURE_OPENCLAW_STATION.md
 │   └── adr/
+├── scripts/
+│   ├── dev-down.sh
+│   └── dev-up.sh
 ├── web/
 │   └── index.html
 └── .github/
@@ -87,8 +94,36 @@ npm run test:e2e:smoke
 CI compatibility notes:
 
 - The scripts above are CI-safe and non-interactive.
-- The current Playwright smoke test is a minimal placeholder (`@smoke`) to validate the harness.
-- If browser-driven e2e coverage is added later, include `npx playwright install --with-deps` in CI before `npm run test:e2e:smoke`.
+- The Playwright smoke test is a minimal placeholder (`@smoke`) to validate
+  the harness.
+- If browser-driven e2e coverage is added later, include
+  `npx playwright install --with-deps` in CI before `npm run test:e2e:smoke`.
+
+## Docker development
+
+Run the local Docker development stack:
+
+```bash
+./scripts/dev-up.sh
+```
+
+Override default ports:
+
+```bash
+BRIDGE_PORT=3100 WEB_PORT=5174 ./scripts/dev-up.sh
+```
+
+Stop the stack:
+
+```bash
+./scripts/dev-down.sh
+```
+
+Validate Docker Compose config:
+
+```bash
+docker compose -f infra/docker/docker-compose.dev.yml config
+```
 
 ## Working model
 
