@@ -1,0 +1,15 @@
+{
+  "name": "openclaw-grand-central",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "typecheck": "tsc -b"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.2"
+  }
+}
