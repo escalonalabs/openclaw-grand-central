@@ -1,6 +1,13 @@
 {
-  "name": "@ogc/schema",
-  "version": "0.0.0",
+  "name": "@openclaw/schema",
+  "version": "0.1.0",
   "private": true,
-  "type": "module"
+  "type": "module",
+  "description": "OpenClaw Grand Central schema package",
+  "scripts": {
+    "test": "node --test ./test/*.test.ts"
+  },
+  "dependencies": {
+    "ajv": "^8.18.0"
+  }
 }
