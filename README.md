@@ -22,9 +22,17 @@ OpenClaw Grand Central visualizes live OpenClaw activity using a train-station m
 
 ```text
 .
+├── infra/
+│   └── docker/
+│       ├── docker-compose.dev.yml
+│       ├── Dockerfile.bridge
+│       └── Dockerfile.web
 ├── docs/
 │   ├── ARCHITECTURE_OPENCLAW_STATION.md
 │   └── adr/
+├── scripts/
+│   ├── dev-down.sh
+│   └── dev-up.sh
 ├── web/
 │   └── index.html
 └── .github/
@@ -38,6 +46,30 @@ Open the prototype locally:
 
 ```bash
 xdg-open web/index.html
+```
+
+Run the local Docker development stack:
+
+```bash
+./scripts/dev-up.sh
+```
+
+Override default ports:
+
+```bash
+BRIDGE_PORT=3100 WEB_PORT=5174 ./scripts/dev-up.sh
+```
+
+Stop the stack:
+
+```bash
+./scripts/dev-down.sh
+```
+
+Validate Docker Compose config:
+
+```bash
+docker compose -f infra/docker/docker-compose.dev.yml config
 ```
 
 ## Working model
