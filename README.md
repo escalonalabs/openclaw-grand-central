@@ -26,14 +26,18 @@ train-station metaphor:
 .
 ├── apps/
 │   ├── bridge/
-│   │   └── src/
+│   │   ├── src/
+│   │   └── test/
 │   └── web/
 │       └── src/
 ├── packages/
 │   ├── schema/
-│   │   └── src/
+│   │   ├── src/
+│   │   └── test/
 │   └── shared/
 │       └── src/
+├── bridge/
+│   └── middleware/
 ├── tests/
 │   ├── e2e/
 │   └── unit/
@@ -44,7 +48,9 @@ train-station metaphor:
 │       └── Dockerfile.web
 ├── docs/
 │   ├── ARCHITECTURE_OPENCLAW_STATION.md
-│   └── adr/
+│   ├── adr/
+│   ├── observability/
+│   └── security/
 ├── scripts/
 │   ├── dev-down.sh
 │   └── dev-up.sh
@@ -129,7 +135,8 @@ docker compose -f infra/docker/docker-compose.dev.yml config
 
 1. Capture architecture changes in `docs/` first.
 2. Record major decisions as ADRs in `docs/adr/`.
-3. Implement in small PRs with tests and update docs in the same PR.
+3. Capture security and observability contracts with each architecture update.
+4. Implement in small PRs with tests and update docs in the same PR.
 
 ## Update cadence
 

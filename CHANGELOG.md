@@ -13,6 +13,10 @@ Semantic Versioning.
 - Architecture baseline and ADR folder
 - Frontend prototype import
 - CI workflows for markdown and link checks
+- ADR-0003 for event schema versioning and QoS policy
+- ADR-0004 for authn/authz, redaction, and action-gate baseline
+- Threat model and observability metrics specification docs
+- Bridge middleware skeleton for token auth and redaction hooks
 
 ## [0.1.0] - 2026-03-01
 

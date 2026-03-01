@@ -75,6 +75,20 @@ graph TD
 **Rationale:** Matches the proven stack of Hypernovum. R3F allows declarative construction of trains, stations, and tracks bound directly to a `Zustand` state store fed by WebSockets.
 **Trade-offs:** High initial learning curve if custom shaders/geometries are required, but performance is exceptional for thousands of objects.
 
+### ADR 003: Event Schema Versioning + QoS
+
+**Context:** Multiple event inputs (native hook and fallback log parser) require a stable contract and delivery priorities.
+**Decision:** Use a canonical versioned event envelope with explicit QoS classes (`best_effort`, `stateful`, `critical`).
+**Rationale:** Reduces schema drift risk and protects critical security/approval events under load.
+**Trade-offs:** Adds parser/version compatibility maintenance and QoS-aware testing.
+
+### ADR 004: Security Model
+
+**Context:** Telemetry and control flows can expose sensitive data and mutating actions.
+**Decision:** Enforce token authn, scope-based authz, bridge-side redaction, and default-deny action gates.
+**Rationale:** Establishes minimum guardrails before full control-plane integration.
+**Trade-offs:** Increases policy and middleware complexity in early prototype stages.
+
 ---
 
 ## 4. Technology Recommendations
