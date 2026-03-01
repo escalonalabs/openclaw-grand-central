@@ -14,6 +14,7 @@ OpenClaw Grand Central visualizes live OpenClaw activity using a train-station m
 ## Current scope
 
 - Architecture and ADR baseline
+- Monorepo and TypeScript foundation
 - Frontend prototype (`web/index.html`)
 - CI for docs/link quality
 - Repo governance for stable collaboration
@@ -22,6 +23,21 @@ OpenClaw Grand Central visualizes live OpenClaw activity using a train-station m
 
 ```text
 .
+├── apps/
+│   ├── bridge/
+│   │   └── src/
+│   └── web/
+│       └── src/
+├── packages/
+│   ├── schema/
+│   │   └── src/
+│   └── shared/
+│       └── src/
+├── tests/
+│   ├── e2e/
+│   └── unit/
+├── infra/
+│   └── docker/
 ├── docs/
 │   ├── ARCHITECTURE_OPENCLAW_STATION.md
 │   └── adr/
@@ -34,7 +50,19 @@ OpenClaw Grand Central visualizes live OpenClaw activity using a train-station m
 
 ## Quick start
 
-Open the prototype locally:
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run type checking across workspaces:
+
+```bash
+npm run typecheck
+```
+
+Open the static prototype locally:
 
 ```bash
 xdg-open web/index.html

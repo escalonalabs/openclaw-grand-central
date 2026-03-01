@@ -1,0 +1,9 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./apps/bridge" },
+    { "path": "./apps/web" },
+    { "path": "./packages/schema" },
+    { "path": "./packages/shared" }
+  ]
+}
