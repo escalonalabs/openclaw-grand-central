@@ -15,4 +15,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Validate markdown structure
-        uses: DavidAnson/markdownlint-cli2-action@v19
+        uses: DavidAnson/markdownlint-cli2-action@v22
