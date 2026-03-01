@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escalona Labs — The Future, Engineered</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0071e3;
+            --primary-glow: rgba(0, 113, 227, 0.4);
+            --accent: #f5f5f7;
+            --glass: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-primary: #f5f5f7;
+            --text-secondary: #a1a1a6;
+            --bg-dark: #000000;
+            --bg-elevated: #1d1d1f;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.47059;
+        }
+
+        /* ===== ORB BACKGROUND ===== */
+        .orb-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 113, 227, 0.4), transparent 70%);
+            top: -200px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(175, 82, 222, 0.3), transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            animation-delay: -5s;
+        }
+
+        .orb-3 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 55, 95, 0.25), transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(30px, -30px) scale(1.05); }
+            50% { transform: translate(-20px, 20px) scale(0.95); }
+            75% { transform: translate(20px, 10px) scale(1.02); }
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 4%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav.scrolled {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary), #5856d6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            box-shadow: 0 0 30px var(--primary-glow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 5% 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            backdrop-filter: blur(20px);
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #30d158;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(180deg, #ffffff 0%, #a1a1a6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease 0.1s forwards;
+            opacity: 0;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
+            color: var(--text-secondary);
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            letter-spacing: -0.01em;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            letter-spacing: -0.01em;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 0 0 0 var(--primary-glow);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px var(--primary-glow);
+        }
+
+        .btn-glass {
+            background: var(--glass);
+            color: var(--text-primary);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(20px);
+        }
+
+        .btn-glass:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        /* ===== CRYSTAL SHOWCASE ===== */
+        .showcase {
+            padding: 6rem 5%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .crystal-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .crystal-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .crystal-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.1), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .crystal-card:hover::before {
+            opacity: 1;
+        }
+
+        .crystal-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .crystal-card.large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .crystal-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--glass-border);
+        }
+
+        .crystal-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+
+        .crystal-card p {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), #5856d6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.03em;
+        }
+
+        /* ===== FEATURES PARALLAX ===== */
+        .features {
+            padding: 8rem 5%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 6rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+            background: linear-gradient(180deg, #ffffff 0%, #86868b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+        }
+
+        .feature-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto 8rem;
+        }
+
+        .feature-row.reverse {
+            direction: rtl;
+        }
+
+        .feature-row.reverse > * {
+            direction: ltr;
+        }
+
+        .feature-visual {
+            position: relative;
+            aspect-ratio: 4/3;
+            border-radius: 24px;
+            overflow: hidden;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+        }
+
+        .feature-visual::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.05) 100%);
+            pointer-events: none;
+        }
+
+        .feature-visual .gradient-mesh {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(at 40% 20%, hsla(212,100%,50%,0.3) 0px, transparent 50%),
+                radial-gradient(at 80% 0%, hsla(270,100%,60%,0.25) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, hsla(340,100%,60%,0.2) 0px, transparent 50%),
+                radial-gradient(at 80% 50%, hsla(200,100%,50%,0.2) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, hsla(280,100%,50%,0.3) 0px, transparent 50%);
+            animation: meshMove 15s ease infinite;
+        }
+
+        @keyframes meshMove {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        .feature-content h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .feature-content p {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            width: 20px;
+            height: 20px;
+            background: rgba(48, 209, 88, 0.2);
+            color: #30d158;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        /* ===== HOLOGRAPHIC CARDS ===== */
+        .holo-section {
+            padding: 8rem 5%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .holo-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            perspective: 1000px;
+        }
+
+        .holo-card {
+            aspect-ratio: 3/4;
+            border-radius: 24px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .holo-card:hover {
+            transform: rotateY(10deg) rotateX(5deg) translateZ(20px);
+        }
+
+        .holo-card-inner {
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            overflow: hidden;
+        }
+
+        .holo-card-inner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255,255,255,0.1),
+                transparent
+            );
+            transition: left 0.5s;
+        }
+
+        .holo-card:hover .holo-card-inner::before {
+            left: 100%;
+        }
+
+        .holo-shine {
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            background: linear-gradient(
+                125deg,
+                transparent 30%,
+                rgba(255,255,255,0.1) 50%,
+                transparent 70%
+            );
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .holo-card:hover .holo-shine {
+            opacity: 1;
+        }
+
+        .holo-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .holo-card h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .holo-card p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            padding: 12rem 5%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .cta-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--primary-glow), transparent 60%);
+            pointer-events: none;
+            animation: breathe 4s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(180deg, #ffffff 0%, #86868b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-section p {
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            margin-bottom: 3rem;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 4rem 5%;
+            border-top: 1px solid var(--glass-border);
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-copy {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== MOBILE ===== */
+        @media (max-width: 1024px) {
+            .crystal-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .crystal-card.large {
+                grid-column: span 2;
+            }
+            .holo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .crystal-grid {
+                grid-template-columns: 1fr;
+            }
+            .crystal-card.large {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+            .feature-row {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .feature-row.reverse {
+                direction: ltr;
+            }
+            .holo-grid {
+                grid-template-columns: 1fr;
+            }
+            .stat-number {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Orb Background -->
+    <div class="orb-container">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">
+            <div class="logo-icon">◈</div>
+            Escalona Labs
+        </div>
+        <ul class="nav-links">
+            <li><a href="#innovacion">Innovación</a></li>
+            <li><a href="#tecnologia">Tecnología</a></li>
+            <li><a href="#laboratorio">Laboratorio</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-badge">Laboratorio de Innovación</div>
+        <h1>The Future,<br>Engineered.</h1>
+        <p class="hero-subtitle">Escalona Labs no es una agencia. Es un laboratorio donde se forja el futuro digital de las empresas que cambiarán el mundo.</p>
+        <div class="hero-cta">
+            <a href="#contacto" class="btn btn-primary">Iniciar Proyecto →</a>
+            <a href="#innovacion" class="btn btn-glass">Explorar Capacidades</a>
+        </div>
+    </section>
+
+    <!-- Crystal Showcase -->
+    <section class="showcase" id="innovacion">
+        <div class="crystal-grid">
+            <div class="crystal-card large">
+                <div class="crystal-icon">⚡</div>
+                <h3>Velocidad Cuántica</h3>
+                <p>Tecnología que no sigue las reglas, las reescribe. Arquitecturas serverless, edge computing y procesamiento paralelo que desafían los límites de lo posible. Cuando tu competidor necesita segundos, tú necesitas milisegundos.</p>
+            </div>
+            <div class="crystal-card">
+                <div class="stat-number">150+</div>
+                <p style="color: var(--text-secondary);">Proyectos de Alto Impacto</p>
+            </div>
+            <div class="crystal-card">
+                <div class="stat-number">98%</div>
+                <p style="color: var(--text-secondary);">Tasa de Éxito</p>
+            </div>
+            <div class="crystal-card">
+                <div class="crystal-icon">🧠</div>
+                <h3>IA Nativa</h3>
+                <p>Inteligencia artificial integrada en el ADN de cada solución.</p>
+            </div>
+            <div class="crystal-card">
+                <div class="crystal-icon">🔮</div>
+                <h3>Visión 2030</h3>
+                <p>Construimos lo que otros aún no se atreven a imaginar.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="tecnologia">
+        <div class="section-header reveal">
+            <h2>Tecnología sin compromisos</h2>
+            <p>Lo último en cada capa de la stack. Si existe algo mejor, ya lo estamos usando.</p>
+        </div>
+
+        <div class="feature-row reveal">
+            <div class="feature-visual">
+                <div class="gradient-mesh"></div>
+            </div>
+            <div class="feature-content">
+                <h3>Arquitectura Híper-Escalar</h3>
+                <p>Infraestructura que crece contigo desde el día uno hasta millones de usuarios. Zero-downtime deployments, auto-scaling predictivo y resiliencia de grado industrial.</p>
+                <ul class="feature-list">
+                    <li>Microservicios containerizados</li>
+                    <li>Edge deployment global</li>
+                    <li>Observabilidad completa</li>
+                    <li>Seguridad zero-trust</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="feature-row reverse reveal">
+            <div class="feature-visual">
+                <div class="gradient-mesh" style="background: radial-gradient(at 40% 20%, hsla(280,100%,60%,0.3) 0px, transparent 50%), radial-gradient(at 80% 0%, hsla(340,100%,60%,0.25) 0px, transparent 50%), radial-gradient(at 0% 50%, hsla(200,100%,50%,0.2) 0px, transparent 50%);"></div>
+            </div>
+            <div class="feature-content">
+                <h3>Experiencias que Hipnotizan</h3>
+                <p>Interfaces que no se usan, se sienten. Animaciones a 120fps, microinteracciones pixel-perfect y diseño adaptativo que anticipa cada gesto del usuario.</p>
+                <ul class="feature-list">
+                    <li>Motion design cinematográfico</li>
+                    <li>Realidad aumentada integrada</li>
+                    <li>Voz y gestos naturales</li>
+                    <li>Accesibilidad total</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="feature-row reveal">
+            <div class="feature-visual">
+                <div class="gradient-mesh" style="background: radial-gradient(at 40% 20%, hsla(160,100%,45%,0.3) 0px, transparent 50%), radial-gradient(at 80% 0%, hsla(45,100%,60%,0.25) 0px, transparent 50%), radial-gradient(at 0% 50%, hsla(320,100%,50%,0.2) 0px, transparent 50%);"></div>
+            </div>
+            <div class="feature-content">
+                <h3>Inteligencia que Aprende</h3>
+                <p>Modelos de ML personalizados entrenados con tus datos. Automatización inteligente que mejora cada día, no porque lo programes, sino porque aprende.</p>
+                <ul class="feature-list">
+                    <li>LLMs fine-tuned para tu dominio</li>
+                    <li>Visión por computadora avanzada</li>
+                    <li>Predicción de comportamiento</li>
+                    <li>Automejora continua</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Holographic Cards -->
+    <section class="holo-section" id="laboratorio">
+        <div class="section-header reveal">
+            <h2>El Laboratorio</h2>
+            <p>Cinco divisiones. Una obsesión: crear lo imposible.</p>
+        </div>
+        <div class="holo-grid">
+            <div class="holo-card reveal">
+                <div class="holo-card-inner">
+                    <div class="holo-shine"></div>
+                    <div class="holo-icon">🚀</div>
+                    <h4>Propulsion</h4>
+                    <p>Arquitectura y backend de próxima generación</p>
+                </div>
+            </div>
+            <div class="holo-card reveal">
+                <div class="holo-card-inner">
+                    <div class="holo-shine"></div>
+                    <div class="holo-icon">✨</div>
+                    <h4>Interface</h4>
+                    <p>Diseño y frontend que desafía expectativas</p>
+                </div>
+            </div>
+            <div class="holo-card reveal">
+                <div class="holo-card-inner">
+                    <div class="holo-shine"></div>
+                    <div class="holo-icon">🧬</div>
+                    <h4>Cognition</h4>
+                    <p>IA y machine learning a medida</p>
+                </div>
+            </div>
+            <div class="holo-card reveal">
+                <div class="holo-card-inner">
+                    <div class="holo-shine"></div>
+                    <div class="holo-icon">🔒</div>
+                    <h4>Fortress</h4>
+                    <p>Seguridad y compliance enterprise-grade</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contacto">
+        <div class="cta-glow"></div>
+        <div class="cta-content">
+            <h2>Construyamos el futuro.</h2>
+            <p>No aceptamos todos los proyectos. Solo aquellos que nos desafían a crear algo que no existía ayer.</p>
+            <div class="hero-cta">
+                <a href="mailto:future@escalonlabs.com" class="btn btn-primary">Solicitar Acceso →</a>
+                <a href="#" class="btn btn-glass">Ver Case Studies</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo-icon">◈</div>
+                Escalona Labs
+            </div>
+            <ul class="footer-links">
+                <li><a href="#">LinkedIn</a></li>
+                <li><a href="#">GitHub</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+            <div class="footer-copy">© 2026 Escalona Labs. Innovación sin límites.</div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mouse tracking for crystal cards
+        document.querySelectorAll('.crystal-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                card.style.setProperty('--mouse-x', `${x}%`);
+                card.style.setProperty('--mouse-y', `${y}%`);
+            });
+        });
+
+        // Scroll reveal
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // 3D tilt effect for holo cards
+        document.querySelectorAll('.holo-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'rotateX(0) rotateY(0) translateZ(0)';
+            });
+        });
+    </script>
+</body>
+</html>
