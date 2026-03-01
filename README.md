@@ -5,6 +5,7 @@ Real-time 3D command center for OpenClaw telemetry.
 ## What this project does
 
 OpenClaw Grand Central visualizes live OpenClaw activity using a train-station metaphor:
+
 - Agents as trains
 - Workspaces as stations
 - Sessions/lanes as tracks

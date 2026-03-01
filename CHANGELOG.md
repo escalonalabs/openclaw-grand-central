@@ -2,11 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on Keep a Changelog and this project aims to follow Semantic Versioning.
+The format is based on Keep a Changelog and this project aims to follow
+Semantic Versioning.
 
 ## [Unreleased]
 
 ### Added
+
 - Initial repository structure and governance files
 - Architecture baseline and ADR folder
 - Frontend prototype import
@@ -14,5 +16,6 @@ The format is based on Keep a Changelog and this project aims to follow Semantic
 
 ## [0.1.0] - 2026-03-01
 
-### Added
+### Added in 0.1.0
+
 - Initial public project baseline

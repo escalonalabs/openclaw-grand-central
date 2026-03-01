@@ -3,6 +3,7 @@
 ## Branch naming
 
 Use short, scoped branch names:
+
 - `feat/<short-topic>`
 - `fix/<short-topic>`
 - `docs/<short-topic>`
@@ -10,6 +11,7 @@ Use short, scoped branch names:
 ## Commit format
 
 Use Conventional Commits:
+
 - `feat:`
 - `fix:`
 - `docs:`
@@ -25,5 +27,6 @@ Use Conventional Commits:
 ## Architecture changes
 
 If a change affects telemetry schema, security, or deployment model:
+
 - Add or update an ADR in `docs/adr/`
 - Reference the ADR in the PR description
