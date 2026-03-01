@@ -1,6 +1,9 @@
 {
-  "name": "@ogc/bridge",
-  "version": "0.0.0",
+  "name": "@openclaw/bridge",
+  "version": "0.1.0",
   "private": true,
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "test": "node --test ./test/*.test.ts"
+  }
 }
