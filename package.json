@@ -1,15 +1,29 @@
 {
   "name": "openclaw-grand-central",
-  "version": "0.0.0",
   "private": true,
+  "version": "0.1.0",
+  "type": "module",
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
   "scripts": {
-    "typecheck": "tsc -b"
+    "typecheck": "tsc -b",
+    "lint": "eslint . --max-warnings=0",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "test:unit": "vitest run",
+    "test:e2e:smoke": "playwright test --grep @smoke"
   },
   "devDependencies": {
-    "typescript": "^5.8.2"
+    "@eslint/js": "^9.0.0",
+    "@playwright/test": "^1.40.0",
+    "eslint": "^9.0.0",
+    "eslint-config-prettier": "^9.0.0",
+    "globals": "^15.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.0.0",
+    "vitest": "^2.0.0"
   }
 }
