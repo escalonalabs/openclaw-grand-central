@@ -14,6 +14,36 @@
 3. Tag release (`v0.x.y`)
 4. Publish release notes
 
+Before tagging, execute the release checklist:
+
+- `docs/runbooks/RELEASE_CHECKLIST_v0.1.0.md`
+- `docs/runbooks/RELEASE_AUTOMATION.md`
+- `docs/runbooks/INCIDENT_RESPONSE_CYCLE2.md`
+- `docs/runbooks/DISASTER_RECOVERY_CYCLE3.md`
+- `docs/runbooks/CYCLE3_CLOSEOUT_v0.1.0.md`
+
+Recommended local release validations:
+
+- `npm run release:candidate -- v0.1.0`
+- `npm run verify:release-pipeline -- v0.1.0`
+- `npm run verify:release-candidate -- v0.1.0`
+- `npm run verify:release-traceability -- v0.1.0`
+- `npm run verify:observability-prometheus`
+- `npm run verify:synthetic-load`
+- `npm run verify:lane-fairness`
+- `npm run verify:action-idempotency`
+- `npm run verify:policy-pack-rollback`
+- `npm run verify:operational-timeline-ui`
+- `npm run verify:observability-slo-bundle`
+- `npm run verify:dashboard-slo-export`
+- `npm run verify:security-rotation`
+- `npm run verify:dr-integrity`
+- `npm run verify:dr-drill`
+- `npm run verify:cycle3-readiness`
+- `npm run verify:cycle3-regression`
+- `npm run verify:runbooks-dr`
+- `npm run verify:cycle2-regression`
+
 ## Local update commands
 
 ```bash
@@ -45,4 +75,10 @@ Validate compose wiring before pushing changes:
 
 ```bash
 docker compose -f infra/docker/docker-compose.dev.yml config
+```
+
+Run full Docker smoke verification (config + up + ps + down):
+
+```bash
+npm run verify:docker-smoke
 ```

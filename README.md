@@ -16,7 +16,7 @@ train-station metaphor:
 
 - Architecture and ADR baseline
 - Monorepo and TypeScript foundation
-- Frontend prototype (`web/index.html`)
+- Frontend shell (`apps/web`)
 - CI for docs/link quality
 - Repo governance for stable collaboration
 
@@ -54,8 +54,6 @@ train-station metaphor:
 ├── scripts/
 │   ├── dev-down.sh
 │   └── dev-up.sh
-├── web/
-│   └── index.html
 └── .github/
     ├── ISSUE_TEMPLATE/
     └── workflows/
@@ -75,10 +73,10 @@ Run type checking across workspaces:
 npm run typecheck
 ```
 
-Open the static prototype locally:
+Run the web app in development mode:
 
 ```bash
-xdg-open web/index.html
+npm --workspace @openclaw/web run dev
 ```
 
 ## Quality tooling and test harness
@@ -86,7 +84,7 @@ xdg-open web/index.html
 Install dev tooling:
 
 ```bash
-npm ci
+npm install
 ```
 
 Run quality checks:

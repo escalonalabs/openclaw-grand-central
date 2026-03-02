@@ -8,24 +8,53 @@ describe('eventStore', () => {
 
   it('stores incoming events', () => {
     useEventStore.getState().addEvent({
-      id: 'evt-1',
-      type: 'train.arrived',
+      version: '1.0',
+      eventId: 'evt-1',
+      occurredAt: '2026-03-01T18:00:00.000Z',
+      eventType: 'train.arrived',
+      severity: 'info',
+      source: {
+        agentId: 'agent-1',
+        workspaceId: 'workspace-omnia',
+        laneId: 'lane-1',
+        sessionId: 'session-1'
+      },
       payload: { trainId: 'A1' },
-      receivedAt: 1700000000
     });
 
     expect(useEventStore.getState().events).toEqual([
       {
-        id: 'evt-1',
-        type: 'train.arrived',
+        version: '1.0',
+        eventId: 'evt-1',
+        occurredAt: '2026-03-01T18:00:00.000Z',
+        eventType: 'train.arrived',
+        severity: 'info',
+        source: {
+          agentId: 'agent-1',
+          workspaceId: 'workspace-omnia',
+          laneId: 'lane-1',
+          sessionId: 'session-1'
+        },
         payload: { trainId: 'A1' },
-        receivedAt: 1700000000
       }
     ]);
   });
 
   it('clears stored events', () => {
-    useEventStore.getState().addEvent({ type: 'station.ready' });
+    useEventStore.getState().addEvent({
+      version: '1.0',
+      eventId: 'evt-2',
+      occurredAt: '2026-03-01T18:01:00.000Z',
+      eventType: 'station.ready',
+      severity: 'info',
+      source: {
+        agentId: 'agent-1',
+        workspaceId: 'workspace-omnia',
+        laneId: 'lane-1',
+        sessionId: 'session-1'
+      },
+      payload: {}
+    });
     useEventStore.getState().clearEvents();
 
     expect(useEventStore.getState().events).toHaveLength(0);

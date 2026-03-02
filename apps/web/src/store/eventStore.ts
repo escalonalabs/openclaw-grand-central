@@ -2,25 +2,30 @@ import { create } from 'zustand';
 
 export type ConnectionState = 'idle' | 'connecting' | 'open' | 'closed' | 'error';
 
-export type IncomingEvent = {
-  id: string;
-  type: string;
-  payload: unknown;
-  receivedAt: number;
+export type IncomingEventSeverity = 'debug' | 'info' | 'warn' | 'error';
+
+export type IncomingEventSource = {
+  agentId: string;
+  workspaceId: string;
+  laneId: string;
+  sessionId: string;
 };
 
-type AddEventInput = {
-  id?: string;
-  type: string;
-  payload?: unknown;
-  receivedAt?: number;
+export type IncomingEvent = {
+  version: '1.0';
+  eventId: string;
+  occurredAt: string;
+  eventType: string;
+  severity: IncomingEventSeverity;
+  source: IncomingEventSource;
+  payload: Record<string, unknown>;
 };
 
 type EventStoreState = {
   connectionState: ConnectionState;
   events: IncomingEvent[];
   setConnectionState: (state: ConnectionState) => void;
-  addEvent: (event: AddEventInput) => void;
+  addEvent: (event: IncomingEvent) => void;
   clearEvents: () => void;
 };
 
@@ -29,21 +34,12 @@ const initialState = {
   events: [] as IncomingEvent[]
 };
 
-const buildEvent = (event: AddEventInput): IncomingEvent => {
-  return {
-    id: event.id ?? `${event.type}-${Date.now()}-${Math.random().toString(16).slice(2)}`,
-    type: event.type,
-    payload: event.payload ?? null,
-    receivedAt: event.receivedAt ?? Date.now()
-  };
-};
-
 export const useEventStore = create<EventStoreState>((set) => ({
   ...initialState,
   setConnectionState: (connectionState) => set({ connectionState }),
   addEvent: (event) =>
     set((state) => ({
-      events: [...state.events, buildEvent(event)]
+      events: [...state.events, event]
     })),
   clearEvents: () => set({ events: [] })
 }));

@@ -1,0 +1,120 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Release Candidate Checks + Notes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Schema tests
+        run: npm --workspace @openclaw/schema test
+
+      - name: Bridge tests
+        run: npm --workspace @openclaw/bridge test
+
+      - name: Web tests
+        run: npm --workspace @openclaw/web test
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Smoke tests
+        run: npm run test:e2e:smoke
+
+      - name: Docker smoke verification
+        run: npm run verify:docker-smoke
+
+      - name: Observability export verification
+        run: npm run verify:observability-export
+
+      - name: Observability alerts verification
+        run: npm run verify:observability-alerts
+
+      - name: Observability Prometheus parity verification
+        run: npm run verify:observability-prometheus
+
+      - name: Runbook DR verification
+        run: npm run verify:runbooks-dr
+
+      - name: Render release notes from changelog
+        run: ./scripts/render-release-notes.sh "${GITHUB_REF_NAME}" "artifacts/release/release-notes.md"
+
+      - name: Build release evidence summary
+        run: |
+          mkdir -p artifacts/release
+          {
+            echo "# Release Evidence"
+            echo
+            echo "- Tag: ${GITHUB_REF_NAME}"
+            echo "- Commit: ${GITHUB_SHA}"
+            echo "- Workflow: ${GITHUB_WORKFLOW}"
+            echo "- Run ID: ${GITHUB_RUN_ID}"
+            echo "- Timestamp (UTC): $(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+            echo
+            echo "## Checks passed"
+            echo
+            echo "- typecheck"
+            echo "- schema tests"
+            echo "- bridge tests"
+            echo "- web tests"
+            echo "- smoke e2e"
+            echo "- docker smoke verification"
+            echo "- observability export verification"
+            echo "- observability alerts verification"
+            echo "- observability prometheus parity verification"
+            echo "- runbook dr verification"
+          } > artifacts/release/release-evidence.md
+
+      - name: Upload release artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-artifacts-${{ github.ref_name }}
+          path: |
+            artifacts/release/release-notes.md
+            artifacts/release/release-evidence.md
+            artifacts/observability/metrics-snapshot.json
+            artifacts/observability/metrics-snapshot-prometheus-parity.json
+            artifacts/observability/metrics-prometheus.txt
+            artifacts/observability/metrics-alert-test-snapshot.json
+            artifacts/observability/alert-report.json
+            artifacts/observability/prometheus-parity-report.md
+            artifacts/runbooks/runbook-dr-audit.md
+          if-no-files-found: error
+
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          body_path: artifacts/release/release-notes.md
+          files: |
+            artifacts/release/release-evidence.md
+            artifacts/observability/metrics-snapshot.json
+            artifacts/observability/metrics-snapshot-prometheus-parity.json
+            artifacts/observability/metrics-prometheus.txt
+            artifacts/observability/metrics-alert-test-snapshot.json
+            artifacts/observability/alert-report.json
+            artifacts/observability/prometheus-parity-report.md
+            artifacts/runbooks/runbook-dr-audit.md
+          fail_on_unmatched_files: false

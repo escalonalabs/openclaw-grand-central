@@ -64,15 +64,16 @@ describe('useEventSocket', () => {
     act(() => {
       sockets[0].emitMessage(
         JSON.stringify({
-          id: 'evt-9',
-          type: 'station.updated',
+          eventId: 'evt-9',
+          eventType: 'station.updated',
+          occurredAt: '2026-03-01T18:00:00.000Z',
           payload: { stationId: 'S1' }
         })
       );
     });
 
     expect(useEventStore.getState().events).toHaveLength(1);
-    expect(useEventStore.getState().events[0]?.type).toBe('station.updated');
+    expect(useEventStore.getState().events[0]?.eventType).toBe('station.updated');
 
     act(() => {
       sockets[0].emitClose();

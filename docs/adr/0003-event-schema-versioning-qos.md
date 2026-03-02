@@ -22,20 +22,21 @@ Adopt a canonical event envelope with explicit versioning and QoS classification
 
 Required top-level fields for bridge-emitted events:
 
-- `schema_version` (`major.minor`)
-- `event_id` (producer-unique identifier)
-- `event_type` (stable event name)
-- `occurred_at` (UTC timestamp)
+- `version` (`major.minor`)
+- `eventId` (producer-unique identifier)
+- `eventType` (stable event name)
+- `occurredAt` (UTC timestamp)
 - `source` (hook or fallback parser)
-- `qos` (`best_effort`, `stateful`, or `critical`)
 - `payload` (event-specific body)
+- optional `qos` (`best_effort`, `stateful`, or `critical`) while transport
+  prioritization is still in implementation.
 
 Versioning policy:
 
 - `minor` increments are additive only.
 - `major` increments are required for removals, renames, or semantic changes.
-- Producers MUST include `schema_version` on every event.
-- Consumers MUST ignore unknown fields and branch on `schema_version`.
+- Producers MUST include `version` on every event.
+- Consumers MUST ignore unknown fields and branch on `version`.
 - Fallback log parsing MUST map raw lines into the same canonical envelope.
 
 QoS policy:

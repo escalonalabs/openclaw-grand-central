@@ -7,12 +7,13 @@
     "strict": true,
     "noEmit": true,
     "skipLibCheck": true,
+    "typeRoots": ["./types", "./node_modules/@types"],
     "types": ["node"]
   },
   "include": ["tests/**/*.ts", "playwright.config.ts", "vitest.config.ts"],
   "references": [
     { "path": "./apps/bridge" },
-    { "path": "./apps/web" },
+    { "path": "./apps/web/tsconfig.typecheck.json" },
     { "path": "./packages/schema" },
     { "path": "./packages/shared" }
   ]

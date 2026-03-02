@@ -1,8 +1,66 @@
-FROM node:20-alpine
+FROM node:24-alpine
 
 WORKDIR /workspace
 ENV NODE_ENV=development
 
+RUN cat <<'EOF' >/usr/local/bin/openclaw-bridge-dev.mjs
+import {
+  BridgeIngestPipeline,
+  WebSocketBridgeServer,
+} from "/workspace/apps/bridge/src/index.ts";
+
+const host = process.env.BRIDGE_HOST ?? "0.0.0.0";
+const port = Number(process.env.BRIDGE_PORT ?? "3000");
+
+const ingestPipeline = new BridgeIngestPipeline();
+const server = new WebSocketBridgeServer({
+  host,
+  port,
+  ingestPluginPayload: (payload) => ingestPipeline.ingestPluginPayload(payload),
+});
+
+let shuttingDown = false;
+const shutdown = async (signal) => {
+  if (shuttingDown) {
+    return;
+  }
+  shuttingDown = true;
+
+  console.log(`[bridge] received ${signal}, stopping`);
+  const results = await Promise.allSettled([ingestPipeline.stop(), server.stop()]);
+  const failedResult = results.find((result) => result.status === "rejected");
+  if (failedResult) {
+    console.error("[bridge] shutdown failed", failedResult.reason);
+    process.exit(1);
+  }
+
+  process.exit(0);
+};
+
+for (const signal of ["SIGINT", "SIGTERM"]) {
+  process.on(signal, () => {
+    void shutdown(signal);
+  });
+}
+
+await server.start();
+await ingestPipeline.start((event) => {
+  server.publish(event);
+});
+
+console.log(`[bridge] listening on ws://${host}:${server.getPort()}/events`);
+console.log(`[bridge] plugin ingest endpoint: POST http://${host}:${server.getPort()}/ingest/plugin`);
+
+process.stdin.setEncoding("utf8");
+process.stdin.on("data", (chunk) => {
+  for (const rawLine of chunk.split(/\r?\n/)) {
+    if (rawLine.trim().length > 0) {
+      ingestPipeline.ingestFallbackLine(rawLine);
+    }
+  }
+});
+EOF
+
 EXPOSE 3000
 
-CMD ["node", "-e", "require('http').createServer((_,res)=>res.end('bridge dev service')).listen(process.env.BRIDGE_PORT || 3000, '0.0.0.0')"]
+CMD ["node", "/usr/local/bin/openclaw-bridge-dev.mjs"]

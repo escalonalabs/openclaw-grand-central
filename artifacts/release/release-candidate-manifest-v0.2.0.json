@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-03-02T04:11:05.352Z",
+  "tag": "v0.2.0",
+  "commit": "c9325b2902bd43e4794de998042fe3286e889672",
+  "files": [
+    {
+      "path": "artifacts/release/release-pipeline-audit-v0.2.0.md",
+      "bytes": 677,
+      "sha256": "d56a4dc557a3b51fe29cb2be067d2d6aa2edf0da810591a7536b34f7dff27ee4"
+    },
+    {
+      "path": "artifacts/release/release-candidate-evidence-v0.2.0.md",
+      "bytes": 589,
+      "sha256": "01442ea4f8ea4bb428e1b29c1525b3f60d3df3c84091541e52a9aa6552c05e1c"
+    },
+    {
+      "path": "artifacts/release/release-notes-v0.2.0.md",
+      "bytes": 785,
+      "sha256": "6c8dc0fa15138953f668ba8665bfa2db61ff03b30a1165d0e4cda81ee6ae2706"
+    },
+    {
+      "path": "artifacts/observability/metrics-snapshot.json",
+      "bytes": 1162,
+      "sha256": "627b62f40ec175d1b1d9e4db963d4d9e42ae84f3358287132c548ca59cfe1824"
+    },
+    {
+      "path": "artifacts/observability/metrics-alert-test-snapshot.json",
+      "bytes": 1161,
+      "sha256": "630b6e3d2f7fa3bf5a613b721998138a7ac6b9d517cffe5bd03ffa41f2e149df"
+    },
+    {
+      "path": "artifacts/observability/alert-report.json",
+      "bytes": 1452,
+      "sha256": "5b67d0c1e71699074f5b2fa1330cfa45e6e5816d75c15795f678257b91494ae9"
+    },
+    {
+      "path": "artifacts/runbooks/runbook-dr-audit.md",
+      "bytes": 281,
+      "sha256": "91585689189d8efc27341fcbe50e1499b8c5a0bfe373f6a059b272355482da78"
+    }
+  ]
+}

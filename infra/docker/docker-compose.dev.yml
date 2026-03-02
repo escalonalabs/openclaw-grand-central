@@ -5,15 +5,13 @@ services:
       dockerfile: infra/docker/Dockerfile.bridge
     working_dir: /workspace
     environment:
+      BRIDGE_HOST: 0.0.0.0
       BRIDGE_PORT: ${BRIDGE_PORT:-3000}
-    command: >
-      sh -c "if [ -f bridge/package.json ]; then
-      cd bridge &&
-      npm ci &&
-      npm run dev -- --host 0.0.0.0 --port $$BRIDGE_PORT;
-      else
-      node -e \"require('http').createServer((_,res)=>res.end('bridge dev service')).listen(process.env.BRIDGE_PORT || 3000,'0.0.0.0')\";
-      fi"
+      OPENCLAW_BRIDGE_NATIVE_PLUGIN_ENABLED: ${OPENCLAW_BRIDGE_NATIVE_PLUGIN_ENABLED:-1}
+      OPENCLAW_BRIDGE_PLUGIN_TRANSPORT: ${OPENCLAW_BRIDGE_PLUGIN_TRANSPORT:-http-ingest}
+      OPENCLAW_BRIDGE_TOKEN: ${OPENCLAW_BRIDGE_TOKEN:-}
+      OPENCLAW_BRIDGE_SCOPES: ${OPENCLAW_BRIDGE_SCOPES:-telemetry:read,metrics:read,control:write}
+      OPENCLAW_BRIDGE_ACTION_ALLOWLIST: ${OPENCLAW_BRIDGE_ACTION_ALLOWLIST:-restart-lane,resume-lane,pause-lane}
     ports:
       - "${BRIDGE_PORT:-3000}:${BRIDGE_PORT:-3000}"
     volumes:
@@ -24,16 +22,13 @@ services:
     build:
       context: ../..
       dockerfile: infra/docker/Dockerfile.web
-    working_dir: /workspace/web
+    working_dir: /workspace
     environment:
       WEB_PORT: ${WEB_PORT:-5173}
+      VITE_EVENT_WS_URL: ws://localhost:${BRIDGE_PORT:-3000}/events
     command: >
-      sh -c "if [ -f package.json ]; then
-      npm ci &&
-      npm run dev -- --host 0.0.0.0 --port $$WEB_PORT;
-      else
-      vite --host 0.0.0.0 --port $$WEB_PORT;
-      fi"
+      sh -c "npm install &&
+      npm --workspace @openclaw/web run dev -- --host 0.0.0.0 --port $$WEB_PORT"
     ports:
       - "${WEB_PORT:-5173}:${WEB_PORT:-5173}"
     volumes:
