@@ -1,0 +1,53 @@
+<svg width="1600" height="720" viewBox="0 0 1600 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="720" rx="36" fill="#07111F"/>
+  <rect width="1600" height="720" rx="36" fill="url(#bg)"/>
+  <g opacity="0.16">
+    <circle cx="1310" cy="130" r="220" fill="#60A5FA"/>
+    <circle cx="320" cy="630" r="260" fill="#7DE2D1"/>
+    <circle cx="1490" cy="620" r="180" fill="#F59E0B"/>
+  </g>
+
+  <rect x="68" y="64" width="1464" height="592" rx="30" fill="rgba(8,17,31,0.62)" stroke="rgba(255,255,255,0.14)"/>
+
+  <text x="106" y="150" fill="#7DE2D1" font-family="ui-sans-serif, system-ui, sans-serif" font-size="24" font-weight="700" letter-spacing="0.18em">
+    OPENCLAW • TELEMETRY • COMMAND CENTER
+  </text>
+  <text x="106" y="258" fill="#F8FAFC" font-family="Georgia, ui-serif, serif" font-size="82" font-weight="700">
+    OpenClaw Grand Central
+  </text>
+  <text x="106" y="324" fill="#CBD5E1" font-family="ui-sans-serif, system-ui, sans-serif" font-size="32">
+    See agent activity like a live system, not a pile of logs.
+  </text>
+  <text x="106" y="388" fill="#94A3B8" font-family="ui-sans-serif, system-ui, sans-serif" font-size="24">
+    A train-station command room for agents, workspaces, sessions, and approvals.
+  </text>
+
+  <rect x="106" y="456" width="306" height="104" rx="22" fill="#0F1A2A" stroke="rgba(125,226,209,0.34)"/>
+  <text x="136" y="496" fill="#7DE2D1" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="700">See</text>
+  <text x="136" y="532" fill="#E2E8F0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="28" font-weight="700">Agents As Trains</text>
+
+  <rect x="438" y="456" width="306" height="104" rx="22" fill="#0F1A2A" stroke="rgba(96,165,250,0.34)"/>
+  <text x="468" y="496" fill="#60A5FA" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="700">Map</text>
+  <text x="468" y="532" fill="#E2E8F0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="28" font-weight="700">Workspaces As Stations</text>
+
+  <rect x="770" y="456" width="306" height="104" rx="22" fill="#0F1A2A" stroke="rgba(245,158,11,0.34)"/>
+  <text x="800" y="496" fill="#F59E0B" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="700">Track</text>
+  <text x="800" y="532" fill="#E2E8F0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="28" font-weight="700">Sessions And Approvals</text>
+
+  <rect x="1128" y="152" width="300" height="250" rx="28" fill="#0B1524" stroke="rgba(255,255,255,0.14)"/>
+  <text x="1160" y="208" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, sans-serif" font-size="26" font-weight="700">Operator Value</text>
+  <text x="1160" y="258" fill="#7DE2D1" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="700">01</text>
+  <text x="1206" y="258" fill="#CBD5E1" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18">See congestion early</text>
+  <text x="1160" y="302" fill="#60A5FA" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="700">02</text>
+  <text x="1206" y="302" fill="#CBD5E1" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18">Understand where work lives</text>
+  <text x="1160" y="346" fill="#F59E0B" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="700">03</text>
+  <text x="1206" y="346" fill="#CBD5E1" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18">Spot blockers fast</text>
+
+  <defs>
+    <linearGradient id="bg" x1="116" y1="62" x2="1518" y2="680" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0E2238"/>
+      <stop offset="0.5" stop-color="#08111F"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+  </defs>
+</svg>

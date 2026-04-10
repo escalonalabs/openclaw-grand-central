@@ -1,0 +1,79 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" rx="36" fill="#08111F"/>
+  <rect width="1600" height="900" rx="36" fill="url(#bg)"/>
+  <g opacity="0.12">
+    <circle cx="1340" cy="160" r="230" fill="#60A5FA"/>
+    <circle cx="260" cy="760" r="250" fill="#7DE2D1"/>
+  </g>
+
+  <text x="84" y="118" fill="#F8FAFC" font-family="Georgia, ui-serif, serif" font-size="50" font-weight="700">
+    How Grand Central is supposed to work
+  </text>
+  <text x="84" y="164" fill="#A5B4C7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="24">
+    The repo is building a path from raw OpenClaw state to a readable real-time operator surface.
+  </text>
+
+  <rect x="88" y="250" width="250" height="160" rx="24" fill="#0D1A2B" stroke="rgba(125,226,209,0.36)"/>
+  <text x="118" y="296" fill="#7DE2D1" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="700">STEP 1</text>
+  <text x="118" y="340" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, sans-serif" font-size="30" font-weight="700">OpenClaw State</text>
+  <text x="118" y="378" fill="#CBD5E1" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20">agents</text>
+  <text x="118" y="406" fill="#CBD5E1" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20">workspaces, sessions, approvals</text>
+
+  <rect x="392" y="250" width="250" height="160" rx="24" fill="#0F1D31" stroke="rgba(96,165,250,0.36)"/>
+  <text x="422" y="296" fill="#60A5FA" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="700">STEP 2</text>
+  <text x="422" y="340" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, sans-serif" font-size="30" font-weight="700">Telemetry Bridge</text>
+  <text x="422" y="378" fill="#CBD5E1" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20">parse events</text>
+  <text x="422" y="406" fill="#CBD5E1" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20">produce structured updates</text>
+
+  <rect x="696" y="250" width="250" height="160" rx="24" fill="#131F35" stroke="rgba(245,158,11,0.36)"/>
+  <text x="726" y="296" fill="#F59E0B" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="700">STEP 3</text>
+  <text x="726" y="340" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, sans-serif" font-size="30" font-weight="700">WebSocket Stream</text>
+  <text x="726" y="378" fill="#CBD5E1" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20">push live state</text>
+  <text x="726" y="406" fill="#CBD5E1" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20">keep browser current</text>
+
+  <rect x="1000" y="250" width="250" height="160" rx="24" fill="#171E34" stroke="rgba(244,114,182,0.36)"/>
+  <text x="1030" y="296" fill="#F472B6" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="700">STEP 4</text>
+  <text x="1030" y="340" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, sans-serif" font-size="30" font-weight="700">3D Surface</text>
+  <text x="1030" y="378" fill="#CBD5E1" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20">trains, stations, tracks</text>
+  <text x="1030" y="406" fill="#CBD5E1" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20">traffic lights for approvals</text>
+
+  <path d="M338 330H382" stroke="#7DE2D1" stroke-width="8" stroke-linecap="round"/>
+  <path d="M642 330H686" stroke="#60A5FA" stroke-width="8" stroke-linecap="round"/>
+  <path d="M946 330H990" stroke="#F59E0B" stroke-width="8" stroke-linecap="round"/>
+
+  <rect x="1288" y="226" width="230" height="210" rx="24" fill="#0C1626" stroke="rgba(255,255,255,0.12)"/>
+  <text x="1320" y="282" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, sans-serif" font-size="28" font-weight="700">Operator Outcome</text>
+  <text x="1320" y="330" fill="#E2E8F0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20">see who is active</text>
+  <text x="1320" y="362" fill="#E2E8F0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20">see where it is happening</text>
+  <text x="1320" y="394" fill="#E2E8F0" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20">see what is blocked</text>
+
+  <path d="M1250 330H1286" stroke="#F472B6" stroke-width="8" stroke-linecap="round"/>
+
+  <rect x="104" y="554" width="1392" height="214" rx="28" fill="#0C1522" stroke="rgba(255,255,255,0.10)"/>
+  <text x="144" y="614" fill="#F8FAFC" font-family="ui-sans-serif, system-ui, sans-serif" font-size="30" font-weight="700">
+    What makes this useful
+  </text>
+  <text x="144" y="660" fill="#CBD5E1" font-family="ui-sans-serif, system-ui, sans-serif" font-size="22">
+    • less log hunting
+  </text>
+  <text x="430" y="660" fill="#CBD5E1" font-family="ui-sans-serif, system-ui, sans-serif" font-size="22">
+    • faster diagnosis
+  </text>
+  <text x="714" y="660" fill="#CBD5E1" font-family="ui-sans-serif, system-ui, sans-serif" font-size="22">
+    • clearer session flow
+  </text>
+  <text x="1024" y="660" fill="#CBD5E1" font-family="ui-sans-serif, system-ui, sans-serif" font-size="22">
+    • visible approvals and blockages
+  </text>
+  <text x="144" y="704" fill="#CBD5E1" font-family="ui-sans-serif, system-ui, sans-serif" font-size="22">
+    • one operator surface instead of fragmented telemetry
+  </text>
+
+  <defs>
+    <linearGradient id="bg" x1="156" y1="64" x2="1516" y2="844" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0E2238"/>
+      <stop offset="0.52" stop-color="#09111F"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+  </defs>
+</svg>
